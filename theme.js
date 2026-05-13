@@ -68,4 +68,17 @@
       toggleTheme();
     }
   });
+
+  const backToTopButton = document.querySelector("[data-back-to-top]");
+  if (backToTopButton) {
+    const updateBackToTop = () => {
+      backToTopButton.classList.toggle("is-visible", window.scrollY > 420);
+    };
+
+    updateBackToTop();
+    window.addEventListener("scroll", updateBackToTop, { passive: true });
+    backToTopButton.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  }
 })();
