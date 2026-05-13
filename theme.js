@@ -44,6 +44,16 @@
       );
       button.title = effective === "dark" ? "Helles Farbschema" : "Dunkles Farbschema";
     });
+
+    document.querySelectorAll("[data-theme-image]").forEach((image) => {
+      const themedSource = effective === "dark" ? image.dataset.darkSrc : image.dataset.lightSrc;
+      const fallbackSource = image.dataset.lightSrc || image.getAttribute("src");
+      const nextSource = themedSource || fallbackSource;
+
+      if (nextSource && image.getAttribute("src") !== nextSource) {
+        image.setAttribute("src", nextSource);
+      }
+    });
   }
 
   function toggleTheme() {
