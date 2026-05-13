@@ -636,7 +636,7 @@ h1 {
 .back-to-top {
   position: fixed;
   right: clamp(18px, 3vw, 34px);
-  bottom: clamp(18px, 3vw, 34px);
+  bottom: clamp(96px, 10vh, 132px);
   z-index: 20;
   display: inline-flex;
   align-items: center;
