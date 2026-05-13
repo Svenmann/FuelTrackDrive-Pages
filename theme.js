@@ -72,11 +72,21 @@
   const backToTopButton = document.querySelector("[data-back-to-top]");
   if (backToTopButton) {
     const updateBackToTop = () => {
-      backToTopButton.classList.toggle("is-visible", window.scrollY > 420);
+      const scrollTop = window.scrollY || document.documentElement.scrollTop || 0;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      const hasScrollablePage = scrollHeight - viewportHeight > 180;
+      const shouldShow = hasScrollablePage && scrollTop > 160;
+
+      backToTopButton.classList.toggle("is-hidden", !shouldShow);
+      backToTopButton.setAttribute("aria-hidden", shouldShow ? "false" : "true");
+      backToTopButton.tabIndex = shouldShow ? 0 : -1;
     };
 
     updateBackToTop();
     window.addEventListener("scroll", updateBackToTop, { passive: true });
+    window.addEventListener("resize", updateBackToTop);
+    window.addEventListener("load", updateBackToTop);
     backToTopButton.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
