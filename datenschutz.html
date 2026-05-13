@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Datenschutzhinweise für FuelTrackDrife.">
+    <title>Datenschutz - FuelTrackDrife</title>
+    <script>
+      try {
+        const theme = localStorage.getItem("fueltrack-theme");
+        const effectiveTheme = theme === "light" || theme === "dark"
+          ? theme
+          : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        if (theme === "light" || theme === "dark") {
+          document.documentElement.dataset.theme = theme;
+        }
+        document.documentElement.dataset.effectiveTheme = effectiveTheme;
+      } catch {}
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="theme.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="FuelTrackDrife Startseite">
+        <img src="assets/fueltrack-icon.png" alt="">
+        <span>FuelTrackDrife</span>
+      </a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Farbschema ändern" aria-pressed="false"></button>
+      </nav>
+    </header>
+
+    <main class="page">
+      <p class="eyebrow">Datenschutz</p>
+      <h1>Datenschutzerklärung</h1>
+      <p>Diese Datenschutzerklärung beschreibt, wie FuelTrackDrife mit personenbezogenen Daten umgeht. Die finalen Angaben werden ergänzt, sobald Anbieter, Kontaktadresse und Funktionsumfang vollständig feststehen.</p>
+
+      <div class="notice">
+        Dieser Text ist ein Arbeitsstand und ersetzt keine rechtliche Prüfung.
+      </div>
+
+      <h2>Verantwortlicher</h2>
+      <p>Name, Anschrift und Kontakt werden später ergänzt.</p>
+
+      <h2>Datenspeicherung in der App</h2>
+      <p>FuelTrackDrife ist darauf ausgelegt, Fahrzeug-, Tank- und Verbrauchsdaten lokal auf dem Gerät zu speichern. Ob und welche Daten darüber hinaus verarbeitet werden, wird in der finalen Fassung konkret beschrieben.</p>
+
+      <h2>Support-Anfragen</h2>
+      <p>Wenn du den Support kontaktierst, werden die von dir freiwillig übermittelten Informationen zur Bearbeitung deiner Anfrage verwendet.</p>
+
+      <h2>Rechte betroffener Personen</h2>
+      <p>Je nach anwendbarem Recht hast du unter anderem Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Datenübertragbarkeit.</p>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 FuelTrackDrife</span>
+      <nav aria-label="Footer Navigation">
+        <a href="support.html">Support</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+        <a href="impressum.html">Impressum</a>
+      </nav>
+    </footer>
+  </body>
+</html>

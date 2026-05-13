@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="FuelTrackDrife hilft beim Erfassen und Auswerten von Tankvorgängen, Verbrauch und Fahrzeugkosten.">
+    <title>FuelTrackDrife</title>
+    <script>
+      try {
+        const theme = localStorage.getItem("fueltrack-theme");
+        const effectiveTheme = theme === "light" || theme === "dark"
+          ? theme
+          : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        if (theme === "light" || theme === "dark") {
+          document.documentElement.dataset.theme = theme;
+        }
+        document.documentElement.dataset.effectiveTheme = effectiveTheme;
+      } catch {}
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="theme.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="FuelTrackDrife Startseite">
+        <img src="assets/fueltrack-icon.png" alt="">
+        <span>FuelTrackDrife</span>
+      </a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <a href="#funktionen">Funktionen</a>
+        <a href="#daten">Daten</a>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Farbschema ändern" aria-pressed="false"></button>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">iOS App für Fahrzeugkosten</p>
+          <h1 id="hero-title">FuelTrackDrife</h1>
+          <p>Tankvorgänge, Verbrauch und Kosten ruhig im Blick behalten. Eine klare App für alle, die ihre Fahrzeuge ohne Tabellenchaos dokumentieren möchten.</p>
+          <div class="actions">
+            <a class="button" href="#funktionen">Funktionen ansehen</a>
+            <a class="button secondary" href="#daten">Datenkontrolle</a>
+          </div>
+        </div>
+        <div class="phone-stage" aria-hidden="true">
+          <img class="phone primary" src="assets/dashboard.png" alt="">
+          <img class="phone secondary" src="assets/entry.png" alt="">
+        </div>
+      </section>
+
+      <section class="section intro-band" aria-labelledby="overview-title">
+        <div class="section-inner split">
+          <div>
+            <p class="eyebrow">Wofür FuelTrackDrife da ist</p>
+            <h2 id="overview-title">Alle Tankdaten an einem ruhigen Ort.</h2>
+          </div>
+          <div>
+            <p>FuelTrackDrife hilft dir, Tankvorgänge schnell zu erfassen, den realen Verbrauch zu verstehen und Kosten pro Fahrzeug nachzuhalten. Die App bleibt bewusst direkt: öffnen, eintragen, auswerten, fertig.</p>
+            <dl class="metric-row">
+              <div>
+                <dt>Mehrere Fahrzeuge</dt>
+                <dd>PKW, Motorrad, LKW und weitere Fahrzeugtypen getrennt verwalten.</dd>
+              </div>
+              <div>
+                <dt>Verbrauch & Kosten</dt>
+                <dd>Liter, Preis, Kilometer und Durchschnittswerte nachvollziehen.</dd>
+              </div>
+              <div>
+                <dt>Backup</dt>
+                <dd>Daten per JSON exportieren und später wiederherstellen.</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section id="funktionen" class="section" aria-labelledby="features-title">
+        <div class="section-inner">
+          <div class="section-heading">
+            <p class="eyebrow">Funktionen</p>
+            <h2 id="features-title">Gemacht für echte Nutzung, nicht für Datensammel-Fleißarbeit.</h2>
+          </div>
+          <div class="feature-grid">
+            <article>
+              <span>01</span>
+              <h3>Tankvorgänge erfassen</h3>
+              <p>Datum, Kilometer, Liter, Gesamtpreis, Kraftstoffart, Tankstelle und Notizen in einem klaren Formular speichern.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Fahrzeuge trennen</h3>
+              <p>Mehrere Fahrzeuge mit eigenem Kraftstofftyp, Kennzeichen und Saisonangaben verwalten.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Verbrauch berechnen</h3>
+              <p>Durchschnittsverbrauch und Werte einzelner Tankvorgänge auf Basis vollständiger Betankungen nachvollziehen.</p>
+            </article>
+            <article>
+              <span>04</span>
+              <h3>Tankstellen wiederfinden</h3>
+              <p>Gespeicherte Tankstellen erneut auswählen oder über die Kartensuche schneller eintragen.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="showcase" aria-labelledby="showcase-title">
+        <div class="showcase-copy">
+          <p class="eyebrow">Auswertung</p>
+          <h2 id="showcase-title">Kosten, Literpreis und Gewohnheiten werden sichtbar.</h2>
+          <p>FuelTrackDrife zeigt Monatsverläufe, Tankstellenanteile und Fahrzeugtypen übersichtlich an. So erkennst du, was dein Fahrzeug wirklich verbraucht und wo die Kosten entstehen.</p>
+        </div>
+        <div class="showcase-images" aria-hidden="true">
+          <img src="assets/statistics.png" alt="">
+          <img src="assets/export.png" alt="">
+        </div>
+      </section>
+
+      <section id="daten" class="section" aria-labelledby="data-title">
+        <div class="section-inner split">
+          <div>
+            <p class="eyebrow">Daten & Kontrolle</p>
+            <h2 id="data-title">Deine Fahrzeughistorie bleibt greifbar.</h2>
+          </div>
+          <div>
+            <p>Die App speichert Tankvorgänge und Fahrzeuge auf deinem Gerät. Für Wechsel, Sicherung oder Archivierung gibt es einen Export und Import im JSON-Format.</p>
+            <ul class="plain-list">
+              <li>Lokale Verwaltung von Fahrzeugen und Tankvorgängen</li>
+              <li>Export für Backups und Gerätewechsel</li>
+              <li>Import bestehender Sicherungen</li>
+              <li>Einheiten und Währung passend einstellen</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 FuelTrackDrife</span>
+      <nav aria-label="Footer Navigation">
+        <a href="support.html">Support</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+        <a href="impressum.html">Impressum</a>
+      </nav>
+    </footer>
+  </body>
+</html>

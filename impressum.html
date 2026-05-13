@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Impressum für FuelTrackDrife.">
+    <title>Impressum - FuelTrackDrife</title>
+    <script>
+      try {
+        const theme = localStorage.getItem("fueltrack-theme");
+        const effectiveTheme = theme === "light" || theme === "dark"
+          ? theme
+          : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        if (theme === "light" || theme === "dark") {
+          document.documentElement.dataset.theme = theme;
+        }
+        document.documentElement.dataset.effectiveTheme = effectiveTheme;
+      } catch {}
+    </script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="theme.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="FuelTrackDrife Startseite">
+        <img src="assets/fueltrack-icon.png" alt="">
+        <span>FuelTrackDrife</span>
+      </a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Farbschema ändern" aria-pressed="false"></button>
+      </nav>
+    </header>
+
+    <main class="page">
+      <p class="eyebrow">Impressum</p>
+      <h1>Impressum</h1>
+      <p>Angaben gemäß den geltenden gesetzlichen Anforderungen werden später ergänzt.</p>
+
+      <div class="notice">
+        Name, Anschrift, E-Mail-Adresse und weitere Pflichtangaben ergänzen.
+      </div>
+
+      <h2>Verantwortlich</h2>
+      <p>Name und Anschrift später ergänzen.</p>
+
+      <h2>Kontakt</h2>
+      <p>E-Mail-Adresse später ergänzen.</p>
+
+      <h2>Haftung für Inhalte</h2>
+      <p>Die finalen Angaben zur Verantwortlichkeit für Inhalte werden später ergänzt.</p>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 FuelTrackDrife</span>
+      <nav aria-label="Footer Navigation">
+        <a href="support.html">Support</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+        <a href="impressum.html">Impressum</a>
+      </nav>
+    </footer>
+  </body>
+</html>
