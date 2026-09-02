@@ -43,6 +43,64 @@
   let lastBeat = -1;
   let lastDot = -1;
 
+  // --- Magnetisches Einrasten ("Widerstand" + weiches Springen zum nächsten View) ---
+  // Ruhepunkte als Fortschrittswerte (p) – ein sauberer Zustand je View.
+  const SNAP_POINTS = [0.085, 0.19, 0.29, 0.46, 0.605, 0.75, 0.835, 0.955];
+  const SNAP_IDLE_MS = 150;     // Ruhe, bevor eingerastet wird
+  const SNAP_DURATION = 520;    // Dauer des weichen Gleitens
+  let snapRAF = null;
+  let idleTimer = null;
+
+  function cancelSnap() {
+    if (snapRAF) { cancelAnimationFrame(snapRAF); snapRAF = null; }
+  }
+
+  function smoothScrollTo(targetY) {
+    cancelSnap();
+    const startY = window.scrollY;
+    const dist = targetY - startY;
+    if (Math.abs(dist) < 2) return;
+    const t0 = performance.now();
+    const ease = (t) => 1 - Math.pow(1 - t, 3); // easeOutCubic
+    function step(now) {
+      const t = clamp((now - t0) / SNAP_DURATION, 0, 1);
+      window.scrollTo(0, Math.round(startY + dist * ease(t)));
+      snapRAF = t < 1 ? requestAnimationFrame(step) : null;
+    }
+    snapRAF = requestAnimationFrame(step);
+  }
+
+  function maybeSnap() {
+    if (reduceMotion.matches) return;
+    const rect = story.getBoundingClientRect();
+    // nur wenn die Story den Viewport füllt (Bühne ist gepinnt)
+    if (rect.top > 1 || rect.bottom < window.innerHeight - 1) return;
+    const total = story.offsetHeight - window.innerHeight;
+    if (total <= 0) return;
+    const p = clamp(-rect.top / total, 0, 1);
+    if (p <= 0.02 || p >= 0.98) return; // Ränder frei lassen (rein/raus scrollen)
+    let best = SNAP_POINTS[0], bd = Infinity;
+    for (const sp of SNAP_POINTS) {
+      const d = Math.abs(sp - p);
+      if (d < bd) { bd = d; best = sp; }
+    }
+    if (bd < 0.005) return; // schon eingerastet
+    const storyTop = rect.top + window.scrollY;
+    smoothScrollTo(Math.round(storyTop + best * total));
+  }
+
+  function onScrollIdle() {
+    if (snapRAF) return; // eigenes Gleiten nicht als Nutzer-Scroll werten
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(maybeSnap, SNAP_IDLE_MS);
+  }
+  function onUserIntent() {
+    cancelSnap(); // laufendes Einrasten sofort abbrechen, wenn der Nutzer eingreift
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(maybeSnap, SNAP_IDLE_MS);
+  }
+  const SNAP_INTENT_EVENTS = ["wheel", "touchstart", "touchmove", "keydown"];
+
   function update(p) {
     // --- Gerät: reinzoomen ---
     const scale = lerp(0.66, 1, seg(p, 0.0, 0.06));
@@ -134,12 +192,18 @@
     beats.forEach((b, i) => b.classList.toggle("is-active", i === 0));
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
+    window.addEventListener("scroll", onScrollIdle, { passive: true });
+    SNAP_INTENT_EVENTS.forEach((ev) => window.addEventListener(ev, onUserIntent, { passive: true }));
     onScroll();
   }
 
   function disable() {
     window.removeEventListener("scroll", onScroll);
     window.removeEventListener("resize", onScroll);
+    window.removeEventListener("scroll", onScrollIdle);
+    SNAP_INTENT_EVENTS.forEach((ev) => window.removeEventListener(ev, onUserIntent));
+    cancelSnap();
+    clearTimeout(idleTimer);
     // ruhiger Grundzustand für reduced-motion / Fallback
     beats.forEach((b) => b.classList.add("is-active"));
     if (device) device.style.transform = "";
