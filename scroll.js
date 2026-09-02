@@ -51,8 +51,11 @@
   let snapRAF = null;
   let idleTimer = null;
 
+  const docEl = document.documentElement;
+
   function cancelSnap() {
     if (snapRAF) { cancelAnimationFrame(snapRAF); snapRAF = null; }
+    docEl.style.scrollBehavior = ""; // CSS-Smooth wieder zulassen
   }
 
   function smoothScrollTo(targetY) {
@@ -60,12 +63,20 @@
     const startY = window.scrollY;
     const dist = targetY - startY;
     if (Math.abs(dist) < 2) return;
+    // Wichtig: CSS `scroll-behavior: smooth` würde jeden Schritt zusätzlich
+    // nativ animieren und die Bewegung neutralisieren -> hier hart abschalten.
+    docEl.style.scrollBehavior = "auto";
     const t0 = performance.now();
     const ease = (t) => 1 - Math.pow(1 - t, 3); // easeOutCubic
     function step(now) {
       const t = clamp((now - t0) / SNAP_DURATION, 0, 1);
       window.scrollTo(0, Math.round(startY + dist * ease(t)));
-      snapRAF = t < 1 ? requestAnimationFrame(step) : null;
+      if (t < 1) {
+        snapRAF = requestAnimationFrame(step);
+      } else {
+        snapRAF = null;
+        docEl.style.scrollBehavior = "";
+      }
     }
     snapRAF = requestAnimationFrame(step);
   }
