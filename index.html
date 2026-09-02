@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="FuelTrackDrive hilft beim Erfassen und Auswerten von Tankvorgängen, Verbrauch und Fahrzeugkosten.">
+    <meta name="description" content="FuelTrackDrive ist der Bordcomputer für deine Tankkosten: Tankvorgänge erfassen, Verbrauch verstehen und Fahrzeugkosten im Blick behalten – als iOS App.">
+    <meta name="theme-color" content="#eef4e7" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0d1512" media="(prefers-color-scheme: dark)">
     <title>FuelTrackDrive</title>
     <script>
       try {
@@ -17,8 +19,12 @@
         document.documentElement.dataset.effectiveTheme = effectiveTheme;
       } catch {}
     </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="theme.js" defer></script>
+    <script src="scroll.js" defer></script>
   </head>
   <body>
     <header class="site-header">
@@ -27,134 +33,157 @@
         <span>FuelTrackDrive</span>
       </a>
       <nav class="nav" aria-label="Hauptnavigation">
-        <a href="#ueberblick">Überblick</a>
+        <a href="#tour">Tour</a>
         <a href="#funktionen">Funktionen</a>
-        <a href="#auswertung">Auswertung</a>
         <a href="#daten">Daten</a>
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Farbschema ändern" aria-pressed="false"></button>
       </nav>
     </header>
 
     <main>
+      <!-- HERO -->
       <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy">
-          <p class="eyebrow">iOS App für Fahrzeugkosten</p>
-          <h1 id="hero-title">FuelTrackDrive</h1>
-          <p>Tankvorgänge, Verbrauch und Kosten ruhig im Blick behalten. Eine klare App für alle, die ihre Fahrzeuge ohne Tabellenchaos dokumentieren möchten.</p>
+        <div class="hero-inner">
+          <p class="eyebrow">iOS App · Tankkosten &amp; Verbrauch</p>
+          <h1 id="hero-title">Der Bordcomputer für deine Tankkosten.</h1>
+          <p class="hero-lead">Tankvorgänge in Sekunden erfassen, den echten Verbrauch verstehen, Kosten pro Fahrzeug nachhalten. Ohne Tabellenchaos – ruhig, klar, auf deinem iPhone.</p>
           <div class="actions">
-            <a class="button" href="#funktionen">Funktionen ansehen</a>
-            <a class="button secondary" href="#daten">Datenkontrolle</a>
+            <a class="button" href="#tour">Sieh es in Aktion</a>
+            <a class="button secondary" href="#funktionen">Funktionen</a>
           </div>
+          <dl class="readout" aria-label="Beispielwerte aus der App">
+            <div><dt>Gesamtstand</dt><dd>91.248<span>km</span></dd></div>
+            <div><dt>Ø Verbrauch</dt><dd>7,1<span>l/100</span></dd></div>
+            <div><dt>Gesamtkosten</dt><dd>447,96<span>€</span></dd></div>
+          </dl>
         </div>
-        <div class="phone-stage" aria-hidden="true">
-          <img
-            class="phone primary"
-            src="images/01 - Dashboard - light.png"
-            data-theme-image
-            data-light-src="images/01 - Dashboard - light.png"
-            data-dark-src="images/01 - Dashboard - dark.png"
-            alt=""
-          >
-          <img
-            class="phone secondary"
-            src="images/02 - Tankvorgang - light.png"
-            data-theme-image
-            data-light-src="images/02 - Tankvorgang - light.png"
-            data-dark-src="images/02 - Tankvorgang - dark.png"
-            alt=""
-          >
+        <a class="scroll-hint" href="#tour" aria-label="Zur Tour scrollen">
+          <span>Scrollen</span>
+          <span class="scroll-hint-line" aria-hidden="true"></span>
+        </a>
+      </section>
+
+      <!-- SCROLLYTELLING STAGE -->
+      <section id="tour" class="story" aria-label="Rundgang durch die App">
+        <div class="story-pin">
+          <div class="story-grid">
+            <!-- Captions -->
+            <div class="story-captions" aria-hidden="false">
+              <article class="beat" data-beat="0">
+                <span class="beat-index">01</span>
+                <h2>App öffnen</h2>
+                <p>Ein Tipp – und der Bordcomputer läuft. Das Dashboard zeigt sofort den Stand deines aktiven Fahrzeugs.</p>
+              </article>
+              <article class="beat" data-beat="1">
+                <span class="beat-index">02</span>
+                <h2>Fahrzeug wählen</h2>
+                <p>PKW, Motorrad, LKW, Wohnmobil – jedes Fahrzeug getrennt. Wechsle mit einem Tipp, alle Werte passen sich an.</p>
+              </article>
+              <article class="beat" data-beat="2">
+                <span class="beat-index">03</span>
+                <h2>Verlauf im Blick</h2>
+                <p>Jeder Tankvorgang sauber protokolliert: Datum, Menge, Preis, Kilometer und Tankstelle.</p>
+              </article>
+              <article class="beat" data-beat="3">
+                <span class="beat-index">04</span>
+                <h2>Tankvorgang erfassen</h2>
+                <p>Ein klares Formular statt Zettelwirtschaft. Eintragen, prüfen, speichern – fertig.</p>
+              </article>
+              <article class="beat" data-beat="4">
+                <span class="beat-index">05</span>
+                <h2>Statistik lesen</h2>
+                <p>Kosten, Literpreis und Gewohnheiten werden sichtbar. Wisch dich horizontal durch die Auswertungen.</p>
+              </article>
+              <article class="beat" data-beat="5">
+                <span class="beat-index">06</span>
+                <h2>Hell oder dunkel</h2>
+                <p>Die App trägt sich, wie du willst. Heller Papierton oder ruhiges Dunkel – im Stil deines Systems.</p>
+              </article>
+            </div>
+
+            <!-- Device -->
+            <div class="story-device" aria-hidden="true">
+              <div class="device" data-device>
+                <div class="device-screen">
+                  <div class="screen is-visible" data-screen="dashboard">
+                    <img data-theme-image src="assets/screens/dashboard-light.jpg" data-light-src="assets/screens/dashboard-light.jpg" data-dark-src="assets/screens/dashboard-dark.jpg" alt="">
+                  </div>
+                  <div class="screen" data-screen="vehicles">
+                    <img data-theme-image src="assets/screens/vehicles-light.jpg" data-light-src="assets/screens/vehicles-light.jpg" data-dark-src="assets/screens/vehicles-dark.jpg" alt="">
+                  </div>
+                  <div class="screen" data-screen="entries">
+                    <img data-theme-image src="assets/screens/entries-light.jpg" data-light-src="assets/screens/entries-light.jpg" data-dark-src="assets/screens/entries-dark.jpg" alt="">
+                  </div>
+                  <div class="screen screen-newentry" data-screen="newentry">
+                    <img data-theme-image src="assets/screens/newentry-light.jpg" data-light-src="assets/screens/newentry-light.jpg" data-dark-src="assets/screens/newentry-dark.jpg" alt="">
+                  </div>
+                  <div class="screen screen-stats" data-screen="stats">
+                    <div class="stats-strip" data-stats-strip>
+                      <img class="stats-card" data-theme-image src="assets/screens/stats1-light.jpg" data-light-src="assets/screens/stats1-light.jpg" data-dark-src="assets/screens/stats1-dark.jpg" alt="">
+                      <img class="stats-card" data-theme-image src="assets/screens/stats2-light.jpg" data-light-src="assets/screens/stats2-light.jpg" data-dark-src="assets/screens/stats2-dark.jpg" alt="">
+                      <img class="stats-card" data-theme-image src="assets/screens/stats3-light.jpg" data-light-src="assets/screens/stats3-light.jpg" data-dark-src="assets/screens/stats3-dark.jpg" alt="">
+                      <img class="stats-card" data-theme-image src="assets/screens/stats4-light.jpg" data-light-src="assets/screens/stats4-light.jpg" data-dark-src="assets/screens/stats4-dark.jpg" alt="">
+                    </div>
+                  </div>
+                  <!-- Mode-switch dark overlay (crossfade to dark at the end, letzte Statistikkarte) -->
+                  <div class="screen-dark-overlay" data-dark-overlay aria-hidden="true">
+                    <img src="assets/screens/stats4-dark.jpg" alt="">
+                  </div>
+                  <div class="save-toast" data-save-toast aria-hidden="true">
+                    <span class="save-check" aria-hidden="true"></span>
+                    Gespeichert
+                  </div>
+                </div>
+                <div class="device-glow" aria-hidden="true"></div>
+              </div>
+              <div class="swipe-hint" data-swipe-hint aria-hidden="true">horizontal wischen →</div>
+            </div>
+          </div>
+          <div class="story-progress" aria-hidden="true"><span data-progress-bar></span></div>
         </div>
       </section>
 
-      <section id="ueberblick" class="section intro-band" aria-labelledby="overview-title">
-        <div class="section-inner split">
-          <div>
-            <p class="eyebrow">Wofür FuelTrackDrive da ist</p>
-            <h2 id="overview-title">Alle Tankdaten an einem ruhigen Ort.</h2>
-          </div>
-          <div>
-            <p>FuelTrackDrive hilft dir, Tankvorgänge schnell zu erfassen, den realen Verbrauch zu verstehen und Kosten pro Fahrzeug nachzuhalten. Die App bleibt bewusst direkt: öffnen, eintragen, auswerten, fertig.</p>
-            <dl class="metric-row">
-              <div>
-                <dt>Mehrere Fahrzeuge</dt>
-                <dd>PKW, Motorrad, LKW und weitere Fahrzeugtypen getrennt verwalten.</dd>
-              </div>
-              <div>
-                <dt>Verbrauch & Kosten</dt>
-                <dd>Liter, Preis, Kilometer und Durchschnittswerte nachvollziehen.</dd>
-              </div>
-              <div>
-                <dt>Backup</dt>
-                <dd>Daten per JSON exportieren und später wiederherstellen.</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </section>
-
-      <section id="funktionen" class="section" aria-labelledby="features-title">
+      <!-- FUNKTIONEN -->
+      <section id="funktionen" class="section features" aria-labelledby="features-title">
         <div class="section-inner">
           <div class="section-heading">
             <p class="eyebrow">Funktionen</p>
-            <h2 id="features-title">Gemacht für echte Nutzung, nicht für Datensammel-Fleißarbeit.</h2>
+            <h2 id="features-title">Gemacht für echte Nutzung, nicht für Fleißarbeit.</h2>
           </div>
           <div class="feature-grid">
             <article>
-              <span>01</span>
-              <h3>Tankvorgänge erfassen</h3>
-              <p>Datum, Kilometer, Liter, Gesamtpreis, Kraftstoffart, Tankstelle und Notizen in einem klaren Formular speichern.</p>
+              <span>Erfassen</span>
+              <h3>Tankvorgänge in Sekunden</h3>
+              <p>Datum, Kilometer, Liter, Gesamtpreis, Kraftstoffart, Tankstelle und Notiz in einem klaren Formular.</p>
             </article>
             <article>
-              <span>02</span>
-              <h3>Fahrzeuge trennen</h3>
-              <p>Mehrere Fahrzeuge mit eigenem Kraftstofftyp, Kennzeichen und Saisonangaben verwalten.</p>
+              <span>Trennen</span>
+              <h3>Mehrere Fahrzeuge</h3>
+              <p>Jedes Fahrzeug mit eigenem Kraftstofftyp, Kennzeichen und Saisonangabe – sauber auseinandergehalten.</p>
             </article>
             <article>
-              <span>03</span>
-              <h3>Verbrauch berechnen</h3>
-              <p>Durchschnittsverbrauch und Werte einzelner Tankvorgänge auf Basis vollständiger Betankungen nachvollziehen.</p>
+              <span>Rechnen</span>
+              <h3>Echter Verbrauch</h3>
+              <p>Durchschnittsverbrauch und Werte einzelner Tankvorgänge auf Basis vollständiger Betankungen.</p>
             </article>
             <article>
-              <span>04</span>
-              <h3>Tankstellen wiederfinden</h3>
-              <p>Gespeicherte Tankstellen erneut auswählen oder über die Kartensuche schneller eintragen.</p>
+              <span>Finden</span>
+              <h3>Tankstellen merken</h3>
+              <p>Gespeicherte Tankstellen erneut wählen oder über die Kartensuche schneller eintragen.</p>
             </article>
           </div>
         </div>
       </section>
 
-      <section id="auswertung" class="showcase" aria-labelledby="showcase-title">
-        <div class="showcase-copy">
-          <p class="eyebrow">Auswertung</p>
-          <h2 id="showcase-title">Kosten, Literpreis und Gewohnheiten werden sichtbar.</h2>
-          <p>FuelTrackDrive zeigt Monatsverläufe, Tankstellenanteile und Fahrzeugtypen übersichtlich an. So erkennst du, was dein Fahrzeug wirklich verbraucht und wo die Kosten entstehen.</p>
-        </div>
-        <div class="showcase-images" aria-hidden="true">
-          <img
-            src="images/03 - Statistik - light.png"
-            data-theme-image
-            data-light-src="images/03 - Statistik - light.png"
-            data-dark-src="images/03 - Statistik - dark.png"
-            alt=""
-          >
-          <img
-            src="images/04.2 - Einstellungen - Import & Export - light.png"
-            data-theme-image
-            data-light-src="images/04.2 - Einstellungen - Import & Export - light.png"
-            data-dark-src="images/04.2 - Einstellungen - Import & Export - dark.png"
-            alt=""
-          >
-        </div>
-      </section>
-
-      <section id="daten" class="section" aria-labelledby="data-title">
+      <!-- DATEN -->
+      <section id="daten" class="section split-section" aria-labelledby="data-title">
         <div class="section-inner split">
           <div>
-            <p class="eyebrow">Daten & Kontrolle</p>
-            <h2 id="data-title">Deine Fahrzeughistorie bleibt greifbar.</h2>
+            <p class="eyebrow">Daten &amp; Kontrolle</p>
+            <h2 id="data-title">Deine Fahrzeug­historie bleibt bei dir.</h2>
           </div>
           <div>
-            <p>Die App speichert Tankvorgänge und Fahrzeuge auf deinem Gerät. Für Wechsel, Sicherung oder Archivierung gibt es einen Export und Import im JSON-Format.</p>
+            <p>Tankvorgänge und Fahrzeuge werden auf deinem Gerät gespeichert. Für Wechsel, Sicherung oder Archivierung gibt es Export und Import im JSON-Format.</p>
             <ul class="plain-list">
               <li>Lokale Verwaltung von Fahrzeugen und Tankvorgängen</li>
               <li>Export für Backups und Gerätewechsel</li>
