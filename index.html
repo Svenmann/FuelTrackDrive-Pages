@@ -92,10 +92,15 @@
               <article class="beat" data-beat="4">
                 <span class="beat-index">05</span>
                 <h2>Statistik lesen</h2>
-                <p>Kosten, Literpreis und Gewohnheiten werden sichtbar. Wisch dich horizontal durch die Auswertungen.</p>
+                <p>Kosten, Literpreis, Tankstellen und Fahrzeugtypen. Wisch dich seitlich durch die Auswertungen – die Punkte unten zeigen, wo du bist.</p>
               </article>
               <article class="beat" data-beat="5">
                 <span class="beat-index">06</span>
+                <h2>Alles einstellbar</h2>
+                <p>Fahrzeuge, Tankstellen, Einheiten, Import und Export – die Einstellungen halten alles zusammen.</p>
+              </article>
+              <article class="beat" data-beat="6">
+                <span class="beat-index">07</span>
                 <h2>Hell oder dunkel</h2>
                 <p>Die App trägt sich, wie du willst. Heller Papierton oder ruhiges Dunkel – im Stil deines Systems.</p>
               </article>
@@ -118,16 +123,28 @@
                     <img data-theme-image src="assets/screens/newentry-light.jpg" data-light-src="assets/screens/newentry-light.jpg" data-dark-src="assets/screens/newentry-dark.jpg" alt="">
                   </div>
                   <div class="screen screen-stats" data-screen="stats">
-                    <div class="stats-strip" data-stats-strip>
-                      <img class="stats-card" data-theme-image src="assets/screens/stats1-light.jpg" data-light-src="assets/screens/stats1-light.jpg" data-dark-src="assets/screens/stats1-dark.jpg" alt="">
-                      <img class="stats-card" data-theme-image src="assets/screens/stats2-light.jpg" data-light-src="assets/screens/stats2-light.jpg" data-dark-src="assets/screens/stats2-dark.jpg" alt="">
-                      <img class="stats-card" data-theme-image src="assets/screens/stats3-light.jpg" data-light-src="assets/screens/stats3-light.jpg" data-dark-src="assets/screens/stats3-dark.jpg" alt="">
-                      <img class="stats-card" data-theme-image src="assets/screens/stats4-light.jpg" data-light-src="assets/screens/stats4-light.jpg" data-dark-src="assets/screens/stats4-dark.jpg" alt="">
+                    <!-- Basis-Screen: Titel, obere Kachel, Tab-Leiste (bleibt fest) -->
+                    <img class="stats-base" data-theme-image src="assets/screens/stats-base-light.jpg" data-light-src="assets/screens/stats-base-light.jpg" data-dark-src="assets/screens/stats-base-dark.jpg" alt="">
+                    <!-- Pager-Fenster: nur die Chartkarte wandert seitlich -->
+                    <div class="stats-window">
+                      <div class="stats-strip" data-stats-strip>
+                        <img class="stats-card" data-theme-image src="assets/screens/stats-chart-1-light.jpg" data-light-src="assets/screens/stats-chart-1-light.jpg" data-dark-src="assets/screens/stats-chart-1-dark.jpg" alt="">
+                        <img class="stats-card" data-theme-image src="assets/screens/stats-chart-2-light.jpg" data-light-src="assets/screens/stats-chart-2-light.jpg" data-dark-src="assets/screens/stats-chart-2-dark.jpg" alt="">
+                        <img class="stats-card" data-theme-image src="assets/screens/stats-chart-3-light.jpg" data-light-src="assets/screens/stats-chart-3-light.jpg" data-dark-src="assets/screens/stats-chart-3-dark.jpg" alt="">
+                        <img class="stats-card" data-theme-image src="assets/screens/stats-chart-4-light.jpg" data-light-src="assets/screens/stats-chart-4-light.jpg" data-dark-src="assets/screens/stats-chart-4-dark.jpg" alt="">
+                      </div>
+                    </div>
+                    <!-- Seiten-Punkte: bleiben stehen, aktiver springt mit -->
+                    <div class="stats-dots" data-stats-dots aria-hidden="true">
+                      <span></span><span></span><span></span><span></span>
                     </div>
                   </div>
-                  <!-- Mode-switch dark overlay (crossfade to dark at the end, letzte Statistikkarte) -->
+                  <div class="screen" data-screen="settings">
+                    <img data-theme-image src="assets/screens/settings-light.jpg" data-light-src="assets/screens/settings-light.jpg" data-dark-src="assets/screens/settings-dark.jpg" alt="">
+                  </div>
+                  <!-- Mode-switch dark overlay (Hell -> Dunkel auf dem Einstellungen-Screen) -->
                   <div class="screen-dark-overlay" data-dark-overlay aria-hidden="true">
-                    <img src="assets/screens/stats4-dark.jpg" alt="">
+                    <img src="assets/screens/settings-dark.jpg" alt="">
                   </div>
                   <div class="save-toast" data-save-toast aria-hidden="true">
                     <span class="save-check" aria-hidden="true"></span>

@@ -303,8 +303,8 @@ a { color: inherit; }
 /* ---------- Scrollytelling stage ---------- */
 .story {
   position: relative;
-  /* Höhe = Anzahl "Szenen-Länge"; steuert die Scroll-Dramaturgie */
-  height: 640vh;
+  /* Höhe = Scroll-Dramaturgie (7 Beats) */
+  height: 760vh;
   background: var(--paper);
 }
 .story-pin {
@@ -420,8 +420,25 @@ a { color: inherit; }
 }
 .screen-newentry { transform: translateY(102%); }
 
-/* Stats horizontal strip */
+/* Statistik-Pager: Basis fest, nur die Chartkarte wandert, Dots stehen.
+   Screen-Tokens (App-Hintergrund + Dot-Farben) folgen dem Seiten-Theme. */
+:root { --screen-bg: #f2f2f7; --dot-on: #da520a; --dot-off: #c7c7cc; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --screen-bg: #000; --dot-on: #f2903e; --dot-off: #48484a; }
+}
+:root[data-theme="dark"] { --screen-bg: #000; --dot-on: #f2903e; --dot-off: #48484a; }
+
 .screen-stats { overflow: hidden; }
+.stats-base { position: absolute; inset: 0; z-index: 0; }
+/* Fenster deckt exakt die weiße Chartkarte ab (Messwerte aus dem Screenshot) */
+.stats-window {
+  position: absolute;
+  left: 0; right: 0;
+  top: 21.2%;
+  height: 66.3%;
+  overflow: hidden;
+  z-index: 1;
+}
 .stats-strip {
   display: flex;
   height: 100%;
@@ -434,6 +451,29 @@ a { color: inherit; }
   height: 100%;
   object-fit: cover;
   object-position: top center;
+}
+/* Seiten-Punkte: eigene, feste Reihe über dem Screenshot; aktiver Punkt springt */
+.stats-dots {
+  position: absolute;
+  left: 0; right: 0;
+  top: 87.4%;
+  height: 3.6%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: var(--screen-bg);
+}
+.stats-dots span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--dot-off);
+  transition: background 160ms ease, transform 160ms ease;
+}
+.stats-dots span.is-active {
+  background: var(--dot-on);
+  transform: scale(1.05);
 }
 
 /* Dark-Overlay auf dem Screen (Moduswechsel) */
